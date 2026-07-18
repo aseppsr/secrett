@@ -24,7 +24,7 @@
             display: grid;
             place-items: center;
             font-family: 'Indie Flower', cursive;
-            background: radial-gradient(circle at top left, #ffd6f0 0%, #ffb6d5 35%, #ff8fb4 100%);
+            background: linear-gradient(135deg, #ffefb3 0%, #ffb6d5 45%, #9fd3ff 100%);
             color: #4a2c2c;
             padding: 24px;
             overflow-x: hidden;
@@ -48,14 +48,14 @@
             position: relative;
             width: min(92vw, 360px);
             min-height: 500px;
-            background: linear-gradient(145deg, #fffdf8, #ffeef7);
+            background: linear-gradient(145deg, #fffef7, #ffe7f4);
             border-radius: 24px;
             box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
             overflow: hidden;
             transform-style: preserve-3d;
             transition: transform 0.7s ease, box-shadow 0.7s ease;
             animation: floatCard 3s ease-in-out infinite;
-            border: 2px solid rgba(255, 255, 255, 0.6);
+            border: 2px solid rgba(255, 255, 255, 0.7);
             cursor: pointer;
         }
 
@@ -123,11 +123,11 @@
         }
 
         .color1 {
-            color: #ff6c47;
+            color: #ff7a1a;
         }
 
         .color2 {
-            color: #ff4fa3;
+            color: #7b4cff;
         }
 
         .details p {
@@ -168,6 +168,19 @@
             font-size: 24px;
             animation: pulse 1.2s infinite;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .mini-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: #7b4cff;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
         }
 
         @keyframes pulse {
@@ -239,7 +252,8 @@
     <div class="sparkle" style="bottom: 10%; right: 20%; animation-delay: 1.8s;"></div>
 
     <div id="card" class="card" onclick="openCard()">
-        <div class="heart">💖</div>
+        <div class="mini-badge">santai aja</div>
+        <div class="heart">✨</div>
         <div class="imgBox">
             <div class="bark"></div>
             <img src="https://assets.cardly.net/production/artwork/8/9/8/898e1f13-0dfa-6d62-664e-070005c2f046/detail/cute-happy-birthday-dog-p1-r2.webp" alt="Happy Birthday illustration">
