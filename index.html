@@ -1,180 +1,297 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Kartu ucapan ulang tahun yang cantik dan interaktif">
     <link rel="icon" href="img/flowers.png" type="image/x-icon">
-    <title>foryou</title>
-    <style type="text/css">
+    <title>For You</title>
+    <style>
         @import url('https://fonts.googleapis.com/css?family=Indie+Flower');
         @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
 
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Indie Flower', cursive !important;
-            background: #f092be;
-            /*CAPE HONEY*/
-            margin: 0px;
-            padding: 0px;
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            font-family: 'Indie Flower', cursive;
+            background: radial-gradient(circle at top left, #ffd6f0 0%, #ffb6d5 35%, #ff8fb4 100%);
+            color: #4a2c2c;
+            padding: 24px;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.45) 1px, transparent 1px);
+            background-size: 18px 18px;
+            pointer-events: none;
+            opacity: 0.35;
         }
 
         ::selection {
-            background: transparent;
+            background: rgba(255, 108, 71, 0.35);
         }
-
-        h4 {
-            font-size: 30px;
-            line-height: 1px;
-            font-family: 'Amatic SC', cursive !important;
-        }
-
-        .color1 {
-            color: #ff6c47
-        }
-
-        /*MOUNTAIN MEADOW*/
-        .color2 {
-            color: #16aadb
-                /*TALL POPPY*/
-        }
-
 
         .card {
-            color: #013243;
-            /*SHERPA BLUE*/
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 300px;
-            height: 400px;
-            background: #e0e1dc;
+            position: relative;
+            width: min(92vw, 360px);
+            min-height: 500px;
+            background: linear-gradient(145deg, #fffdf8, #ffeef7);
+            border-radius: 24px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
             transform-style: preserve-3d;
-            transform: translate(-50%, -50%) perspective(2000px);
-            box-shadow: inset 400px 0 50px rgba(0, 0, 0, .5), 20px 0 60px rgba(0, 0, 0, .5);
-            transition: 2s;
+            transition: transform 0.7s ease, box-shadow 0.7s ease;
+            animation: floatCard 3s ease-in-out infinite;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+        }
+
+        .card.open {
+            transform: rotateY(180deg) scale(1.03);
         }
 
         .card:hover {
-            transform: translate(-50%, -50%) perspective(2000px) rotate(15deg) scale(1.2);
-            box-shadow: inset 20px 0 50px rgba(0, 0, 0, .5), 0 10px 100px rgba(0, 0, 0, .5);
+            transform: rotate(-3deg) scale(1.03);
+            box-shadow: 0 28px 60px rgba(0, 0, 0, 0.25);
         }
 
-        .card:before {
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .card::before {
             content: '';
             position: absolute;
-            top: -5px;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: #BAC1BA;
-            transform-origin: bottom;
-            transform: skewX(-45deg);
+            inset: 0;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: inherit;
+            pointer-events: none;
         }
 
-        .card:after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: -5px;
-            width: 5px;
-            height: 100%;
-            background: #92A29C;
-            transform-origin: left;
-            transform: skewY(-45deg);
-        }
-
-        .card .imgBox {
-            width: 100%;
-            height: 100%;
+        .imgBox {
             position: relative;
-            transform-origin: left;
-            transition: .7s;
+            height: 230px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ffe4ef, #ffd1e3);
         }
 
-        .card .bark {
+        .imgBox::after {
+            content: '';
             position: absolute;
-            background: #e0e1dc;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 20%, rgba(255,255,255,0.3));
+            pointer-events: none;
+        }
+
+        .imgBox img {
             width: 100%;
             height: 100%;
-            opacity: 0;
-            transition: .7s;
+            object-fit: cover;
+            display: block;
         }
 
-        .card .imgBox img {
-            min-width: 250px;
-            max-height: 400px;
+        .details {
+            padding: 20px 20px 24px;
+            transition: opacity 0.5s ease;
         }
 
-        .card:hover .imgBox {
-            transform: rotateY(-135deg);
-        }
-
-        .card:hover .bark {
+        .card.open .details {
             opacity: 1;
-            transition: .6s;
-            box-shadow: 300px 200px 100px rgba(0, 0, 0, .4) inset;
         }
 
-        .card .details {
-            position: absolute;
-            top: 0;
-            left: 0;
-            box-sizing: border-box;
-            padding: 0 0 0 10px;
-            z-index: -1;
-            margin-top: 40px;
-        }
-
-        .card .details p {
-            font-size: 15px;
-            line-height: 5px;
-            transform: rotate(-10deg);
-            padding: 0 0 0 20px;
-        }
-
-        .card .details h4 {
+        h4 {
+            margin: 4px 0;
             text-align: center;
+            font-family: 'Amatic SC', cursive;
+            font-size: 32px;
+            line-height: 1.1;
+            letter-spacing: 1px;
+        }
+
+        .color1 {
+            color: #ff6c47;
+        }
+
+        .color2 {
+            color: #ff4fa3;
+        }
+
+        .details p {
+            margin: 6px 0;
+            font-size: 15px;
+            line-height: 1.4;
+            animation: fadeIn 1.2s ease both;
+        }
+
+        .details p:nth-child(2n) {
+            animation-delay: 0.1s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .text-right {
             text-align: right;
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        .note {
+            text-align: center;
+            font-size: 13px;
+            color: #8f6b6b;
+            margin-top: 8px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .heart {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            font-size: 24px;
+            animation: pulse 1.2s infinite;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0.8;
+            pointer-events: none;
+            animation: sparkle 2.5s linear infinite;
+        }
+
+        .floating-heart {
+            position: fixed;
+            font-size: 24px;
+            pointer-events: none;
+            animation: floatHeart 2.5s linear forwards;
+            z-index: 5;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 8px;
+            height: 14px;
+            opacity: 0;
+            animation: fall 2.2s linear forwards;
+            pointer-events: none;
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(0.2); opacity: 0; }
+            50% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(0.2); opacity: 0; }
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(220px) rotate(720deg); opacity: 0; }
+        }
+
+        @keyframes floatHeart {
+            0% { transform: translateY(0) scale(0.5); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(-180px) scale(1.3); opacity: 0; }
+        }
+
+        @media (max-width: 480px) {
+            .details p {
+                font-size: 14px;
+            }
+
+            h4 {
+                font-size: 28px;
+            }
         }
     </style>
-    <link rel="stylesheet" type="text/css" href="https://cdn.prinsh.com/NathanPrinsley-textstyle/nprinsh-stext.css" />
 </head>
 
 <body>
-    <div class="card">
+    <div class="sparkle" style="top: 12%; left: 18%;"></div>
+    <div class="sparkle" style="top: 20%; right: 15%; animation-delay: 0.6s;"></div>
+    <div class="sparkle" style="bottom: 18%; left: 22%; animation-delay: 1.2s;"></div>
+    <div class="sparkle" style="bottom: 10%; right: 20%; animation-delay: 1.8s;"></div>
+
+    <div id="card" class="card" onclick="openCard()">
+        <div class="heart">💖</div>
         <div class="imgBox">
-            <Sediv class="bark"></Sediv>
-            <img src="https://assets.cardly.net/production/artwork/8/9/8/898e1f13-0dfa-6d62-664e-070005c2f046/detail/cute-happy-birthday-dog-p1-r2.webp"
-                width="100%" height="100%">
+            <div class="bark"></div>
+            <img src="https://assets.cardly.net/production/artwork/8/9/8/898e1f13-0dfa-6d62-664e-070005c2f046/detail/cute-happy-birthday-dog-p1-r2.webp" alt="Happy Birthday illustration">
         </div>
         <div class="details">
-            <h4 class="color1">Happy Birthday</h2>
-                <h4 class="color2 margin">To You</h3>
-                    <p>Happy birthday kinan,</p>
-                    <p>today ur day,</p>
-                    <p>i just wanna say thank you very much for</p>
-                    <p>all the experience</p>
-                    <p>and interactions we've been through,</p>
-                    <p>im so glad to know u,</p>
-                    <p>i hope u'll always have a beautiful day.</p>
-                    <p>Don't forget about ur health,</p>
-                    <p>please stay healthy and happy,</p>
-                    <p>and once again..</p>
-                    <p>happy birthday to you</p>
+            <h4 class="color1">Happy Birthday</h4>
+            <h4 class="color2">To You</h4>
+            <p>Happy birthday, Tasya,</p>
+            <p>today is your cute little special day,</p>
+            <p>and I just want to say thank you for being you.</p>
+            <p>You make everything feel warmer, sweeter, and more fun.</p>
+            <p>I’m really glad to know you,</p>
+            <p>and I hope your day is full of giggles, snacks, and love.</p>
+            <p>Stay healthy, stay happy, and keep shining,</p>
+            <p>because you deserve the world.</p>
+            <p>And once again...</p>
+            <p>happy birthday, my dear.</p>
+            <p class="text-right">— Bima</p>
+            <p class="note">made with love 💕</p>
 
-                    <p class="text-right">-sean</p>
-                    <p class="text-right"></p>
-
-                    <audio autoplay loop>
-                        <source src="musik/love.mp3" type="audio/mpeg">
-                     </audio>
-
+            <audio autoplay loop>
+                <source src="musik/love.mp3" type="audio/mpeg">
+            </audio>
         </div>
     </div>
+    <script>
+        function openCard() {
+            const card = document.getElementById('card');
+            card.classList.add('open');
 
+            for (let i = 0; i < 20; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-20px';
+                confetti.style.background = ['#ff6c47', '#ff4fa3', '#16aadb', '#fff'][Math.floor(Math.random() * 4)];
+                confetti.style.animationDelay = Math.random() * 0.2 + 's';
+                document.body.appendChild(confetti);
+            }
+
+            for (let i = 0; i < 10; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.textContent = '💗';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = window.innerHeight * 0.8 + 'px';
+                heart.style.animationDelay = Math.random() * 0.2 + 's';
+                document.body.appendChild(heart);
+            }
+
+            setTimeout(() => {
+                card.classList.remove('open');
+            }, 1200);
+        }
+    </script>
 </body>
 
 </html>
