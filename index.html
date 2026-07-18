@@ -46,25 +46,33 @@
 
         .card {
             position: relative;
-            width: min(92vw, 360px);
-            min-height: 500px;
+            width: min(92vw, 380px);
+            min-height: 520px;
             background: linear-gradient(145deg, #fffef7, #ffe7f4);
-            border-radius: 24px;
+            border-radius: 10px;
             box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
             overflow: hidden;
             transform-style: preserve-3d;
-            transition: transform 0.7s ease, box-shadow 0.7s ease;
+            transition: transform 0.8s ease, box-shadow 0.8s ease;
             animation: floatCard 3s ease-in-out infinite;
-            border: 2px solid rgba(255, 255, 255, 0.7);
             cursor: pointer;
+            border: 2px solid rgba(120, 80, 40, 0.2);
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(0,0,0,0.06) 0%, transparent 10%, transparent 90%, rgba(0,0,0,0.06) 100%);
+            pointer-events: none;
         }
 
         .card.open {
-            transform: rotateY(180deg) scale(1.03);
+            transform: rotateY(180deg) scale(1.02);
         }
 
         .card:hover {
-            transform: rotate(-3deg) scale(1.03);
+            transform: rotate(-2deg) scale(1.02);
             box-shadow: 0 28px 60px rgba(0, 0, 0, 0.25);
         }
 
@@ -84,9 +92,10 @@
 
         .imgBox {
             position: relative;
-            height: 230px;
+            height: 240px;
             overflow: hidden;
             background: linear-gradient(135deg, #ffe4ef, #ffd1e3);
+            border-bottom: 3px solid rgba(120, 80, 40, 0.15);
         }
 
         .imgBox::after {
@@ -107,6 +116,7 @@
         .details {
             padding: 20px 20px 24px;
             transition: opacity 0.5s ease;
+            background: linear-gradient(180deg, #fffef8 0%, #fff4fb 100%);
         }
 
         .card.open .details {
@@ -181,6 +191,7 @@
             font-size: 11px;
             font-weight: bold;
             letter-spacing: 0.5px;
+            z-index: 3;
         }
 
         @keyframes pulse {
@@ -252,8 +263,8 @@
     <div class="sparkle" style="bottom: 10%; right: 20%; animation-delay: 1.8s;"></div>
 
     <div id="card" class="card" onclick="openCard()">
-        <div class="mini-badge">santai aja</div>
-        <div class="heart">✨</div>
+        <div class="mini-badge">buka halaman</div>
+        <div class="heart">📖</div>
         <div class="imgBox">
             <div class="bark"></div>
             <img src="https://assets.cardly.net/production/artwork/8/9/8/898e1f13-0dfa-6d62-664e-070005c2f046/detail/cute-happy-birthday-dog-p1-r2.webp" alt="Happy Birthday illustration">
